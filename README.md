@@ -1,12 +1,66 @@
-# React + Vite
+# Modern UX Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern portfolio template for UX designers who code, built with React, GSAP, and Three.js.
 
-Currently, two official plugins are available:
+## 🚧 Work in Progress
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This portfolio is currently under development. Features and design are being actively worked on.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 18** - Frontend framework
+- **Vite** - Build tool and dev server
+- **Tailwind CSS v4** - Styling with `@theme` directive
+- **GSAP** - Animations and scroll effects
+- **Three.js** - 3D graphics and interactive elements
+- **React Three Fiber** - React bindings for Three.js
+
+## Installation & Setup
+
+### Prerequisites
+
+- Node.js (version 16.0 or higher)
+- npm or yarn
+
+### Clone the repository
+
+```bash
+git clone https://github.com/asifjirayat/modern-ux-portfolio
+cd modern-ux-portfolio
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start development server
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173 in your browser
+
+## Planned Features
+
+- [ ] &nbsp; Interactive hero section with GSAP animations
+- [ ] &nbsp; 3D background elements with Three.js
+- [ ] &nbsp; Smooth scroll effects and page transitions
+- [ ] &nbsp; Project gallery with hover animations
+- [ ] &nbsp; Password-protected case studies
+- [ ] &nbsp; Responsive design for all devices
+- [ ] &nbsp; Performance optimizations
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## Status
+
+🟡 **In Development** - Check back for updates!
+
+---
+
+_This README will be updated with more details once the project is completed and deployed._
