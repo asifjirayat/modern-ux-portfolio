@@ -1,43 +1,27 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { navigationLinks } from "../../constants";
+import { useScrollTo } from "../../hooks";
+import { Button } from "../ui";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  // Navigation Links
-  const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const { handleSmoothScroll } = useScrollTo();
 
   // Handle Mobile Toggle
-  const handleToggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const handleToggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Handle Smooth Scroll Function
-  const handleSmoothScroll = (e, targetid) => {
-    e.preventDefault();
-
-    const element = document.getElementById(targetid);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-
+  // Handle Smooth Scroll for Nav Items
+  const handleNavClick = (e, href) => {
+    handleSmoothScroll(e, href);
     setIsMenuOpen(false);
   };
 
   // Handle Scroll Detection
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -58,7 +42,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <a
               href="#home"
-              onClick={(e) => handleSmoothScroll(e, "home")}
+              onClick={(e) => handleNavClick(e, "home")}
               className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent"
             >
               Your Name
@@ -67,11 +51,11 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {quickLinks.map((link) => (
+            {navigationLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleSmoothScroll(e, link.href.substring(1))}
+                onClick={(e) => handleNavClick(e, link.href.substring(1))}
                 className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
               >
                 {link.name}
@@ -79,13 +63,12 @@ const Navigation = () => {
             ))}
 
             {/* CTA Button */}
-            <a
+            <Button
               href="#contact"
-              onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 hover:scale-105 transition-all duration-200"
+              onClick={(e) => handleNavClick(e, "contact")}
             >
               Let's Talk
-            </a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -111,24 +94,25 @@ const Navigation = () => {
         >
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 py-6 px-4 mt-4">
             <div className="space-y-4">
-              {quickLinks.map((link) => (
+              {navigationLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => handleSmoothScroll(e, link.href.substring(1))}
+                  onClick={(e) => handleNavClick(e, link.href.substring(1))}
                   className="block text-gray-600 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
                 >
                   {link.name}
                 </a>
               ))}
               <div className="pt-4 border-t border-gray-200">
-                <a
+                <Button
                   href="#contact"
-                  onClick={(e) => handleSmoothScroll(e, "contact")}
-                  className="block w-full text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors duration-200"
+                  onClick={(e) => handleNavClick(e, "contact")}
+                  size="small"
+                  className="hover:scale-105"
                 >
                   Let's Talk
-                </a>
+                </Button>
               </div>
             </div>
           </div>

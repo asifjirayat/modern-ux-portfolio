@@ -1,19 +1,20 @@
+import { SectionHeader, Button } from "../ui";
 import { Mail, MapPin, Zap } from "lucide-react";
 
 const Contact = ({ ...rest }) => {
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <section className="py-16 md:py-24 bg-gray-50" {...rest}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Section header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
-            Get In Touch
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Have a project in mind? Let's discuss how we can work together to
-            create something amazing.
-          </p>
-        </div>
+        <SectionHeader
+          title="Get In Touch"
+          description="Have a project in mind? Let's discuss how we can work together to
+            create something amazing."
+        />
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Info Left*/}
@@ -156,12 +157,13 @@ const Contact = ({ ...rest }) => {
                 />
               </div>
 
-              <button
+              <Button
                 type="submit"
-                className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 focus:ring-4 focus:ring-primary-500/40 transition-colors"
+                className="w-full"
+                onClick={handleSubmitForm}
               >
                 Send Message
-              </button>
+              </Button>
             </form>
           </div>
         </div>

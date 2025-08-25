@@ -1,33 +1,11 @@
 import { ExternalLink } from "lucide-react";
+import { navigationLinks, socialLinks } from "../../constants";
+import { useScrollTo } from "../../hooks";
+import { Button } from "../ui";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const socialLinks = [
-    { name: "LinkedIn", href: "#" },
-    { name: "GitHub", href: "#" },
-    { name: "Twitter", href: "#" },
-  ];
-
-  // Handle Smooth Scroll Function
-  const handleSmoothScroll = (e, targetid) => {
-    e.preventDefault();
-
-    const element = document.getElementById(targetid);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  const { handleSmoothScroll } = useScrollTo();
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -50,7 +28,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
+              {navigationLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
@@ -88,14 +66,15 @@ const Footer = () => {
 
             {/* Call to Action */}
             <div className="mt-6 pt-6 border-t border-gray-800">
-              <a
+              <Button
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, "contact")}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors duration-200"
+                size="small"
+                className="inline-flex items-center gap-2"
               >
                 Get in Touch
                 <ExternalLink className="w-4 h-4" />
-              </a>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,4 +1,9 @@
+import { Button } from "../ui";
+import { useScrollTo } from "../../hooks";
+
 const Hero = ({ ...rest }) => {
+  const { handleSmoothScroll } = useScrollTo();
+
   return (
     <section
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white pt-20"
@@ -15,12 +20,13 @@ const Hero = ({ ...rest }) => {
           I design user-centered digital products that blend aesthetics with
           functionality.
         </p>
-        <a
+        <Button
           href="#projects"
-          className="px-8 py-4 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 focus-visible:ring-4 focus-visible:ring-primary-500/40 transition-colors"
+          size="large"
+          onClick={(e) => handleSmoothScroll(e, "projects")}
         >
           View my work
-        </a>
+        </Button>
       </div>
     </section>
   );

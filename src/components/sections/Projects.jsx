@@ -1,3 +1,5 @@
+import { SectionHeader, Button } from "../ui";
+
 const Projects = ({ ...rest }) => {
   const projects = [
     {
@@ -50,15 +52,11 @@ const Projects = ({ ...rest }) => {
     <section className="py-16 md:py-24 bg-white" {...rest}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
-            Featured Projects
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A collection of digital experiences I've crafted, from concept to
-            completion
-          </p>
-        </div>
+        <SectionHeader
+          title="Featured Projects"
+          description="A collection of digital experiences I've crafted, from concept to
+            completion"
+        />
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -121,12 +119,8 @@ const Projects = ({ ...rest }) => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <button className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors focus-visible:ring-4 focus-visible:ring-primary-500/40">
-                    View Project
-                  </button>
-                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:border-primary-600 hover:text-primary-600 transition-colors">
-                    Case Study
-                  </button>
+                  <Button className="flex-1">View Project</Button>
+                  <Button variant="outline">Case Study</Button>
                 </div>
               </div>
             </article>
@@ -135,9 +129,9 @@ const Projects = ({ ...rest }) => {
 
         {/* View All Projects Button */}
         <div className="text-center mt-12 md:mt-16">
-          <button className="px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-all duration-300 focus-visible:ring-4 focus-visible:ring-primary-500/40">
+          <Button size="large" variant="secondary">
             View All Projects
-          </button>
+          </Button>
         </div>
       </div>
     </section>

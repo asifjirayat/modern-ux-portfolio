@@ -1,7 +1,10 @@
 import { Code, Palette, Users, Lightbulb } from "lucide-react";
-import { div } from "three/tsl";
+import { SectionHeader, Button } from "../ui";
+import { useScrollTo } from "../../hooks";
 
 const About = ({ ...rest }) => {
+  const { handleSmoothScroll } = useScrollTo();
+
   const skills = [
     {
       icon: Code,
@@ -31,18 +34,12 @@ const About = ({ ...rest }) => {
 
   return (
     <section className="py-16 md:py-24 bg-white" {...rest}>
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
-            About me
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Hi, I'm a creative UX designer passionate about crafting digital
-            experiences that make a difference
-          </p>
-        </div>
-
+        <SectionHeader
+          title="About Me"
+          description="Hi, I'm a creative UX designer passionate about crafting digital experiences"
+        />
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Personal Journey */}
           <div className="space-y-6">
@@ -121,9 +118,13 @@ const About = ({ ...rest }) => {
                 Let's create something amazing
               </p>
             </div>
-            <button className="px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors duration-200">
+            <Button
+              size="small"
+              href="#contact"
+              onClick={(e) => handleSmoothScroll(e, "contact")}
+            >
               Get Started
-            </button>
+            </Button>
           </div>
         </div>
       </div>
