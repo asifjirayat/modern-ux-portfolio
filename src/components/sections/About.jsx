@@ -109,9 +109,9 @@ const About = ({ ...rest }) => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl border border-primary-100">
+          <div className="inline-flex items-center gap-8 px-8 py-4 bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl border border-primary-100">
             <div className="text-left">
-              <p className="text-gray-900 font-medium">
+              <p className="text-gray-900 font-medium text-xl">
                 Ready to work together?
               </p>
               <p className="text-gray-600 text-sm">
@@ -119,7 +119,6 @@ const About = ({ ...rest }) => {
               </p>
             </div>
             <Button
-              size="small"
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, "contact")}
             >

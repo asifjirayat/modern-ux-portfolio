@@ -1,3 +1,5 @@
+import { useButtonAnimation } from "../../hooks";
+
 const Button = ({
   children,
   variant = "primary",
@@ -5,13 +7,16 @@ const Button = ({
   href,
   onClick,
   className = "",
+  disabled = false,
   ...rest
 }) => {
+  const buttonRef = useButtonAnimation([disabled]); // Pass disabled as dependency
+
   // If anchor use <a>, else use <button>
   const Component = href ? "a" : "button";
 
   const baseClasses =
-    "font-medium transition-all duration-200 focus-visible:ring-4 focus-visible:ring-primary-500/40";
+    "font-medium transition-colors duration-200 focus-visible:ring-4 focus-visible:ring-primary-500/40 relative overflow-hidden";
 
   const variants = {
     primary: "bg-primary-600 text-white hover:bg-primary-700",
@@ -27,11 +32,25 @@ const Button = ({
     large: "px-8 py-4 text-lg rounded-full",
   };
 
-  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
+  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${
+    disabled ? "opacity-50 cursor-not-allowed" : ""
+  } ${className}`;
 
   return (
-    <Component href={href} onClick={onClick} className={classes} {...rest}>
-      {children}
+    <Component
+      ref={buttonRef}
+      href={href}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+      {...rest}
+    >
+      <span className="relative z-10">{children}</span>
+
+      {/* Ripple effect overlay - only show if not disabled */}
+      {!disabled && (
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700 ease-out" />
+      )}
     </Component>
   );
 };
