@@ -15,9 +15,12 @@ const Hero = ({ ...rest }) => {
           I design user-centered digital products that blend aesthetics with
           functionality.
         </p>
-        <button className="px-8 py-4 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 focus-visible:ring-4 focus-visible:ring-primary-500/40 transition-colors">
+        <a
+          href="#projects"
+          className="px-8 py-4 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 focus-visible:ring-4 focus-visible:ring-primary-500/40 transition-colors"
+        >
           View my work
-        </button>
+        </a>
       </div>
     </section>
   );

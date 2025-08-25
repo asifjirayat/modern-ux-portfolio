@@ -5,6 +5,7 @@ const Footer = () => {
 
   const quickLinks = [
     { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
@@ -32,7 +33,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="mb-6">
@@ -47,7 +48,7 @@ const Footer = () => {
           </div>
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -68,7 +69,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Connect</h4>
+            <h4 className="text-lg font-semibold mb-4">Connect</h4>
             <ul className="space-y-3">
               {socialLinks.map((link) => (
                 <li key={link.name}>

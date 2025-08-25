@@ -1,5 +1,6 @@
 import Navigation from "./components/layouts/Navigation.jsx";
 import Hero from "./components/sections/Hero.jsx";
+import About from "./components/sections/About.jsx";
 import Projects from "./components/sections/Projects.jsx";
 import Contact from "./components/sections/Contact.jsx";
 import Footer from "./components/layouts/Footer.jsx";
@@ -9,6 +10,7 @@ const App = () => {
     <>
       <Navigation />
       <Hero id="home" />
+      <About id="about" />
       <Projects id="projects" />
       <Contact id="contact" />
       <Footer />

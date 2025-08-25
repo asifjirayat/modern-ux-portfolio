@@ -5,6 +5,14 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Navigation Links
+  const quickLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   // Handle Mobile Toggle
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -56,29 +64,19 @@ const Navigation = () => {
               Your Name
             </a>
           </div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              onClick={(e) => handleSmoothScroll(e, "home")}
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
-            >
-              Home
-            </a>
-            <a
-              href="#projects"
-              onClick={(e) => handleSmoothScroll(e, "projects")}
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
-            >
-              Projects
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
-            >
-              Contact
-            </a>
+            {quickLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href.substring(1))}
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
+              >
+                {link.name}
+              </a>
+            ))}
 
             {/* CTA Button */}
             <a
@@ -113,27 +111,16 @@ const Navigation = () => {
         >
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 py-6 px-4 mt-4">
             <div className="space-y-4">
-              <a
-                href="#home"
-                onClick={(e) => handleSmoothScroll(e, "home")}
-                className="block text-gray-600 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
-              >
-                Home
-              </a>
-              <a
-                href="#projects"
-                onClick={(e) => handleSmoothScroll(e, "projects")}
-                className="block text-gray-600 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
-              >
-                Projects
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, "contact")}
-                className="block text-gray-600 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
-              >
-                Contact
-              </a>
+              {quickLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleSmoothScroll(e, link.href.substring(1))}
+                  className="block text-gray-600 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              ))}
               <div className="pt-4 border-t border-gray-200">
                 <a
                   href="#contact"
