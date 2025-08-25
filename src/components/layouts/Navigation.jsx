@@ -1,8 +1,9 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Handle Mobile Toggle
   const handleToggleMenu = () => {
@@ -24,8 +25,25 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  // Handle Scroll Detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200"
+          : "bg-white/80 backdrop-blur-sm"
+      }`}
+    >
       <nav className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -66,7 +84,7 @@ const Navigation = () => {
             <a
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors duration-200"
+              className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 hover:scale-105 transition-all duration-200"
             >
               Let's Talk
             </a>
