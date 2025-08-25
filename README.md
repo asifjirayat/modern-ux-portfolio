@@ -6,6 +6,8 @@ A modern portfolio template for UX designers who code, built with React, GSAP, a
 
 This portfolio is currently under development. Features and design are being actively worked on.
 
+#### 👉Live Demo: [https://modern-ux-portfolio.vercel.app/](https://modern-ux-portfolio.vercel.app/)
+
 ## Tech Stack
 
 - **React 18** - Frontend framework
