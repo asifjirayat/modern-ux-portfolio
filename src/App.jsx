@@ -1,3 +1,4 @@
+import Navigation from "./components/layouts/Navigation.jsx";
 import Hero from "./components/sections/Hero.jsx";
 import Projects from "./components/sections/Projects.jsx";
 import Contact from "./components/sections/Contact.jsx";
@@ -5,9 +6,10 @@ import Contact from "./components/sections/Contact.jsx";
 const App = () => {
   return (
     <>
-      <Hero />
-      <Projects />
-      <Contact />
+      <Navigation />
+      <Hero id="home" />
+      <Projects id="projects" />
+      <Contact id="contact" />
     </>
   );
 };

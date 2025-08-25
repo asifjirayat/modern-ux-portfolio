@@ -1,8 +1,8 @@
 import { Mail, MapPin, Zap } from "lucide-react";
 
-const Contact = () => {
+const Contact = ({ ...rest }) => {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-gray-50" {...rest}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-12 md:mb-16">

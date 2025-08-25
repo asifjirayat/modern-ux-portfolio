@@ -1,6 +1,9 @@
-const Hero = () => {
+const Hero = ({ ...rest }) => {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white">
+    <section
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white pt-20"
+      {...rest}
+    >
       <div className="text-center px-6 max-w-4xl mx-auto">
         <p className="text-sm uppercase tracking-wider text-primary-600 mb-4 font-medium">
           Creative UX Designer

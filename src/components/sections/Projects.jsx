@@ -1,4 +1,4 @@
-const Projects = () => {
+const Projects = ({ ...rest }) => {
   const projects = [
     {
       id: 1,
@@ -47,7 +47,7 @@ const Projects = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white" {...rest}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
