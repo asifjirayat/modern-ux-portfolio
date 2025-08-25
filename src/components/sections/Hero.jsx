@@ -5,14 +5,14 @@ const Hero = () => {
         <p className="text-sm uppercase tracking-wider text-primary-600 mb-4 font-medium">
           Creative UX Designer
         </p>
-        <h1 className="text-5xl md:text-3xl font-bold mb-6 text-gray-900 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 bg-clip-text text-transparent">
           Crafting Digital Experiences
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
           I design user-centered digital products that blend aesthetics with
           functionality.
         </p>
-        <button className="px-8 py-4 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors duration-300">
+        <button className="px-8 py-4 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 focus-visible:ring-4 focus-visible:ring-primary-500/40 transition-colors">
           View my work
         </button>
       </div>
