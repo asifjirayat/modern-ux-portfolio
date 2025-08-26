@@ -54,28 +54,6 @@
     width: 100% !important;
     max-width: 100% !important;
   }
-
-  section {
-    overflow-x: hidden;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .max-w-7xl,
-  .max-w-4xl,
-  .container {
-    overflow-x: hidden !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .grid {
-    overflow-x: hidden !important;
-  }
-
-  .flex {
-    overflow-x: hidden !important;
-  }
 }
 /* GSAP ScrollTrigger refresh helper */
 .gsap-refresh {
