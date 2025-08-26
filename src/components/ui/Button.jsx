@@ -45,7 +45,7 @@ const Button = ({
       disabled={disabled}
       {...rest}
     >
-      <span className="relative z-10">{children}</span>
+      {children}
 
       {/* Ripple effect overlay - only show if not disabled */}
       {!disabled && (

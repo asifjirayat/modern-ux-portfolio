@@ -70,9 +70,10 @@ const Footer = () => {
                 href="#contact"
                 onClick={(e) => handleSmoothScroll(e, "contact")}
                 size="small"
-                className="inline-flex"
+                className="inline-flex items-center gap-2"
               >
                 Get in Touch
+                <ExternalLink className="w-4 h-4" />
               </Button>
             </div>
           </div>
