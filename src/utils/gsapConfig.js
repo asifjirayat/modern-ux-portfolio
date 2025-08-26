@@ -13,7 +13,7 @@ gsap.defaults({
 
 // Animation presets
 export const animations = {
-  fedeInUp: {
+  fadeInUp: {
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
   },

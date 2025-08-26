@@ -49,7 +49,7 @@ const Button = ({
 
       {/* Ripple effect overlay - only show if not disabled */}
       {!disabled && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700 ease-out" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-500 ease-out" />
       )}
     </Component>
   );
