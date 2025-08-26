@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "../utils/gsapConfig.js";
+import gsap, { animations } from "../utils/gsapConfig.js";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 export const useHeroAnimation = (dependencies = []) => {
   const containerRef = useRef();
@@ -154,9 +158,124 @@ export const useButtonAnimation = (dependencies = []) => {
   return buttonRef;
 };
 
+// Scroll Trigger Animation
+export const useScrollAnimation = (animationsConfig, dependencies = []) => {
+  const containerRef = useRef();
+
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      if (!container || !animationsConfig?.length) return;
+
+      const animations = [];
+      animationsConfig.forEach((config) => {
+        const {
+          selector,
+          from = {
+            opacity: 0,
+            y: 50,
+          },
+          to = {
+            opacity: 1,
+            y: 0,
+          },
+          start = "top 80%",
+          end = "bottom 20%",
+          trigger, // Optional custom trigger
+          scrub = false,
+          pin = false,
+          toggleActions = "play none none reverse",
+          markers = false,
+          stagger = 0,
+          duration = 1,
+          delay = 0,
+          ease = "power2.out",
+          counterAnimation = false, // Special flag to counter animations
+          ...restConfig
+        } = config;
+
+        const elements = container.querySelectorAll(selector);
+        if (!elements.length) return;
+
+        const triggerElement = trigger
+          ? container.querySelector(trigger)
+          : container.querySelector(selector);
+        if (!triggerElement) return;
+
+        // Handle counter animations specially
+        if (counterAnimation) {
+          elements.forEach((element, index) => {
+            const finalValue = parseInt(element.textContent) || 0;
+
+            const animation = gsap.fromTo(
+              element,
+              { ...from, textContent: 0 },
+              {
+                ...to,
+                textContent: finalValue,
+                duration,
+                ease,
+                delay: delay + index * (stagger || 0.2),
+                scrollTrigger: {
+                  trigger: triggerElement,
+                  start,
+                  end,
+                  scrub,
+                  pin,
+                  toggleActions,
+                  markers,
+                  ...restConfig,
+                },
+                snap: { textContent: 1 },
+                onUpdate: function () {
+                  const suffix = element.dataset.suffix || "";
+                  element.textContent =
+                    Math.ceil(this.targets()[0].textContent) + suffix;
+                },
+              }
+            );
+            animations.push(animation);
+          });
+        } else {
+          // Regular animation
+          const animation = gsap.fromTo(elements, from, {
+            ...to,
+            duration,
+            ease,
+            delay,
+            stagger: stagger || 0,
+            scrollTrigger: {
+              trigger: triggerElement,
+              start,
+              end,
+              scrub,
+              pin,
+              toggleActions,
+              markers,
+              ...restConfig,
+            },
+          });
+          animations.push(animation);
+        }
+      });
+
+      return () => {
+        animations.forEach((animation) => {
+          if (animation.scrollTrigger) animation.scrollTrigger.kill();
+          animation.kill();
+        });
+      };
+    },
+    { scope: containerRef, dependencies }
+  );
+
+  return containerRef;
+};
+
 export const useGSAPAnimation = () => {
   return {
     useHeroAnimation,
     useButtonAnimation,
+    useScrollAnimation,
   };
 };

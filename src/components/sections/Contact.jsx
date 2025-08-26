@@ -1,24 +1,74 @@
 import { SectionHeader, Button } from "../ui";
 import { Mail, MapPin, Zap } from "lucide-react";
+import { useScrollAnimation } from "../../hooks";
 
 const Contact = ({ ...rest }) => {
+  // Configure animations for projects section
+  const contactAnimations = [
+    {
+      selector: ".section-header",
+      from: { opacity: 0, y: 40 },
+      to: { opacity: 1, y: 0 },
+      duration: 1,
+      start: "top 90%",
+    },
+    {
+      selector: ".contact-form",
+      from: { opacity: 0, x: -60 },
+      to: { opacity: 1, x: 0 },
+      duration: 1,
+      ease: "power2.out",
+      start: "top 80%",
+    },
+    {
+      selector: ".contact-info",
+      from: { opacity: 0, x: 60 },
+      to: { opacity: 1, x: 0 },
+      duration: 1,
+      ease: "power2.out",
+      delay: 0.2,
+      start: "top 80%",
+    },
+    {
+      selector: ".contact-item",
+      from: { opacity: 0, y: 30, scale: 0.9 },
+      to: { opacity: 1, y: 0, scale: 1 },
+      stagger: 0.15,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+      start: "top 85%",
+    },
+    {
+      selector: ".form-field",
+      from: { opacity: 0, y: 20 },
+      to: { opacity: 1, y: 0 },
+      stagger: 0.1,
+      duration: 0.6,
+      start: "top 85%",
+    },
+  ];
+
+  const contactRef = useScrollAnimation(contactAnimations);
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50" {...rest}>
+    <section ref={contactRef} className="py-16 md:py-24 bg-gray-50" {...rest}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Section header */}
-        <SectionHeader
-          title="Get In Touch"
-          description="Have a project in mind? Let's discuss how we can work together to
+        <div className="section-header">
+          <SectionHeader
+            title="Get In Touch"
+            description="Have a project in mind? Let's discuss how we can work together to
             create something amazing."
-        />
+          />
+        </div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Info Left*/}
-          <div className="space-y-8">
+          <div className="contact-info space-y-8">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Let's Start a Conversation
@@ -33,7 +83,7 @@ const Contact = ({ ...rest }) => {
 
             {/* Contact Details */}
             <div className="space-y-4">
-              <div className="flex items-center gap-4">
+              <div className="contact-item flex items-center gap-4">
                 <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
                   <Mail className="w-6 h-6 text-primary-600" />
                 </div>
@@ -65,7 +115,7 @@ const Contact = ({ ...rest }) => {
             </div>
 
             {/* Social Links */}
-            <div className="pt-6 border-t border-gray-200">
+            <div className="contact-item pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-600 mb-4">Find me on</p>
               <div className="flex flex-wrap gap-3">
                 <a
@@ -91,9 +141,9 @@ const Contact = ({ ...rest }) => {
           </div>
 
           {/* Contact Form Right */}
-          <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+          <div className="contact-form bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
             <form className="space-y-6">
-              <div>
+              <div className="form-field">
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 mb-2"
@@ -109,7 +159,7 @@ const Contact = ({ ...rest }) => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-900 mb-2"
@@ -125,7 +175,7 @@ const Contact = ({ ...rest }) => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label
                   htmlFor="subject"
                   className="block text-sm font-medium text-gray-900 mb-2"
@@ -141,7 +191,7 @@ const Contact = ({ ...rest }) => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-900 mb-2"
@@ -157,13 +207,15 @@ const Contact = ({ ...rest }) => {
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="w-full"
-                onClick={handleSubmitForm}
-              >
-                Send Message
-              </Button>
+              <div className="form-field">
+                <Button
+                  type="submit"
+                  className="w-full"
+                  onClick={handleSubmitForm}
+                >
+                  Send Message
+                </Button>
+              </div>
             </form>
           </div>
         </div>

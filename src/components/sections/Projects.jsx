@@ -1,6 +1,36 @@
 import { SectionHeader, Button } from "../ui";
+import { useScrollAnimation } from "../../hooks";
 
 const Projects = ({ ...rest }) => {
+  // Configure animations for projects section
+  const projectsAnimations = [
+    {
+      selector: ".section-header",
+      from: { opacity: 0, y: 40 },
+      to: { opacity: 1, y: 0 },
+      duration: 1,
+      start: "top 90%",
+    },
+    {
+      selector: ".project-card",
+      from: { opacity: 0, y: 60, scale: 0.9 },
+      to: { opacity: 1, y: 0, scale: 1 },
+      stagger: 0.2,
+      duration: 0.8,
+      ease: "power2.out",
+      start: "top 80%",
+    },
+    {
+      selector: ".view-all-cta",
+      from: { opacity: 0, y: 30 },
+      to: { opacity: 1, y: 0 },
+      duration: 0.8,
+      start: "top 85%",
+    },
+  ];
+
+  const projectsRef = useScrollAnimation(projectsAnimations);
+
   const projects = [
     {
       id: 1,
@@ -49,21 +79,23 @@ const Projects = ({ ...rest }) => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white" {...rest}>
+    <section ref={projectsRef} className="py-16 md:py-24 bg-white" {...rest}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <SectionHeader
-          title="Featured Projects"
-          description="A collection of digital experiences I've crafted, from concept to
+        <div className="section-header">
+          <SectionHeader
+            title="Featured Projects"
+            description="A collection of digital experiences I've crafted, from concept to
             completion"
-        />
+          />
+        </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project) => (
             <article
               key={project.id}
-              className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              className="project-card group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
               {/* Image Container*/}
               <div className="aspect-video bg-gradient-to-br from-primary-100 to-accent-100 relative overflow-hidden">
@@ -128,7 +160,7 @@ const Projects = ({ ...rest }) => {
         </div>
 
         {/* View All Projects Button */}
-        <div className="text-center mt-12 md:mt-16">
+        <div className="view-all-cta text-center mt-12 md:mt-16">
           <Button size="large" variant="secondary">
             View All Projects
           </Button>

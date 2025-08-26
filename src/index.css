@@ -27,15 +27,56 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
     font-family: "Inter", sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 }
 
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    overflow-x: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  section {
+    overflow-x: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .max-w-7xl,
+  .max-w-4xl,
+  .container {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .grid {
+    overflow-x: hidden !important;
+  }
+
+  .flex {
+    overflow-x: hidden !important;
+  }
+}
 /* GSAP ScrollTrigger refresh helper */
 .gsap-refresh {
   position: relative;

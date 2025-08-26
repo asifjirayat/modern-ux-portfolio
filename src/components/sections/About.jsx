@@ -1,9 +1,51 @@
 import { Code, Palette, Users, Lightbulb } from "lucide-react";
 import { SectionHeader, Button } from "../ui";
-import { useScrollTo } from "../../hooks";
+import { useScrollTo, useScrollAnimation } from "../../hooks";
 
 const About = ({ ...rest }) => {
   const { handleSmoothScroll } = useScrollTo();
+
+  // Configure animations for about section
+  const aboutAnimations = [
+    {
+      selector: ".journey-content > *",
+      from: { opacity: 0, y: 50 },
+      to: { opacity: 1, y: 0 },
+      trigger: ".journey-content",
+      stagger: 0.2,
+      duration: 1,
+      start: "top 80%",
+    },
+    {
+      selector: ".stat-number",
+      from: { opacity: 0, scale: 0.5 },
+      to: { opacity: 1, scale: 1 },
+      trigger: ".stats-container",
+      stagger: 0.2,
+      duration: 1.5,
+      counterAnimation: true, // Special flag for counter
+      start: "top 80%",
+    },
+    {
+      selector: ".skill-card",
+      from: { opacity: 0, y: 60, scale: 0.9 },
+      to: { opacity: 1, y: 0, scale: 1 },
+      trigger: ".skills-grid",
+      stagger: 0.15,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+      start: "top 85%",
+    },
+    {
+      selector: ".cta-section",
+      from: { opacity: 0, y: 40, scale: 0.95 },
+      to: { opacity: 1, y: 0, scale: 1 },
+      duration: 1,
+      start: "top 90%",
+    },
+  ];
+
+  const aboutRef = useScrollAnimation(aboutAnimations);
 
   const skills = [
     {
@@ -33,7 +75,7 @@ const About = ({ ...rest }) => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white" {...rest}>
+    <section ref={aboutRef} className="py-16 md:py-24 bg-white" {...rest}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
         <SectionHeader
@@ -43,7 +85,7 @@ const About = ({ ...rest }) => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Personal Journey */}
           <div className="space-y-6">
-            <div>
+            <div className="journey-content">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 My Journey
               </h3>
@@ -66,15 +108,18 @@ const About = ({ ...rest }) => {
               </div>
             </div>
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-6 pt-6">
+            <div className="stats-container grid grid-cols-2 gap-6 pt-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
-                  50+
+                <div
+                  className="stat-number text-3xl font-bold text-primary-600 mb-2"
+                  data-suffix="+"
+                >
+                  50
                 </div>
                 <div className="text-sm text-gray-600">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-600 mb-2">
+                <div className="stat-number text-3xl font-bold text-primary-600 mb-2">
                   5
                 </div>
                 <div className="text-sm text-gray-600">Years Experience</div>
@@ -82,13 +127,13 @@ const About = ({ ...rest }) => {
             </div>
           </div>
           {/* Right Colunmn - Skills Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="skills-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
             {skills.map((skill, index) => {
               const Icon = skill.icon;
               return (
                 <div
                   key={index}
-                  className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 group"
+                  className="skill-card bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -108,7 +153,7 @@ const About = ({ ...rest }) => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="cta-section text-center mt-16">
           <div className="inline-flex items-center gap-8 px-8 py-4 bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl border border-primary-100">
             <div className="text-left">
               <p className="text-gray-900 font-medium text-xl">
